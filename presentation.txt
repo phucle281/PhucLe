@@ -1,0 +1,35 @@
+[3 - 4 mins]
+Good morning everyone, I'm Phuc from Group 3.
+Today, I'm going to show you our result of a week of team-working, about the I2C module.
+So what's it? Let's begin.
+At first, take a look at the Agenda which helps you get an overview of what I'm about to say.
+I can summarize the content into 3 main sections - Overview, Register description and Operation.
+So, I2C protocol, which means Inter-Integrated Circuit, is a synchronous serial interface
+which is a very popular and powerful bus used for communication because of its simplicity.
+---
+I2C uses only two bidirectional open drain lines, Serial Data Line SDA and Serial Clock Line SCL,
+pulled up with resistors.
+---
+The bus has two roles for nodes: master and slave:
+1. Master node – node that generates the clock and initiates communication with slaves.
+2. Slave node – node that receives the clock and responds when addressed by the master.
+---
+I2C defines basic types of transactions, each of which begins with a START condition and ends with a STOP condition:
+1. Single message where a master writes data to a slave.
+2. Single message where a master reads data from a slave.
+3. Combined format, where a master issues at least two reads or writes to one or more slaves.
+
+These figures show the structure of a transaction.
+The gray blocks indicate ...
+The white blocks indicate ...
+
+The transaction will be introduced in more detail in the following sections
+The START and STOP condition, ACK and NACK.
+
+Table of R-Car 2nd and 3rd Generation information
+.. And some details of R-Car 3rd H3 Generation
+
+
+3rd Generation R-Car series products have up to 7 I2C bus interfaces with information shown below.
+
+Let's move to the next section with my teammate ..
