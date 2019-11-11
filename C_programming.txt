@@ -1,0 +1,209 @@
+CHƯƠNG 2. HẰNG, BIẾN VÀ MẢNG
+===
+4 kiểu giá trị
+1. char		:	ký tự
+2. int		:	số nguyên
+3. float	:	số dấu phẩy động độ chính xác đơn
+4. double	:	số dấu phẩy động độ chính xác kép
+---
+CHAR
+1 byte, biểu diễn theo mã ASCII:
+. 0 - 9: 048 - 057
+. A: 065, B: 066, ...
+. a: 097, b: 098, ...
+
+Có hai kiểu char: signed char và unsigned char.
+. signed char		:	-128 đến 127
+. unsigned char		:	0 đến 255
+
+VD: (signed) char num_1 = 200;
+khi đó thực chất num_1 = 200 - 256 = -56.
+
+Cách chuyển: 127 = 0111 1111
+--> inverse 127 = 1000 0000
+--> -127 = inverse 127 + 1 = 1000 0001 = 129 = -127 + 256
+Tương tự  200 = x + 256 --> x = -56.
+---
+INT
+int				2 byte
+unsigned int	2 byte
+long			4 byte
+unsigned long	4 byte
+CHAR cũng có thể được coi là một dạng của INT.
+---
+FLOAT & DOUBLE
+float			4 byte
+double			8 byte
+long double		10 byte
+---
+HẰNG
+Hằng Hexa: a|A-10, b|B-11, c|C-12, d|D-13, e|E-14, f|F-15.
+Hằng ký tự: Viết trong dấu nháy đơn, VD 'a'. Giá trị của 'a' chính là mã ASCII của a.
+Vậy giá trị của 'a' là 97.
+
+Cách chuyển các số CHAR sang số INT:
+VD: '9' - '0' = 9.
+
+Ký tự '\0' là NULL.
+
+Hằng xâu ký tự: Viết trong dấu nháy kép, VD "Phuc".
+---
+ENUM
+Mục đích chính của enum là tạo ra các macro(tương tự #define ...), các kiểu và các biến gợi nhớ.
+---
+BIẾN
+---
+MẢNG
+Các phần tử của mảng có địa chỉ liên tiếp nhau. Trong bộ nhớ, các phần tử của mảng hai chiều được sắp xếp theo hàng.
+Chú ý a[2.4] = a[2], a[1.9] = a[1]: phần thực của index.
+CHÚ Ý: Tên mảng biểu thị địa chỉ ĐẦU TIÊN của mảng: a = &a[0].
+---
+TYPEDEF: đặt tên cho một kiểu dữ liệu.
+VD: typedef int nguyen;
+---
+INOUT
+Đọc document.
+c : char, d : int, f : float hoặc double, s : string, x : hexa.
+
+CHƯƠNG 5. CÁC TOÁN TỬ ĐIỀU KHIỂN
+===
+TOÁN TỬ IF
+---
+TOÁN TỬ SWITCH
+Nhãn là các số nguyên, hằng KÝ TỰ(không dùng hằng xâu) hoặc biểu thức hằng.
+Chú ý break;
+---
+GOTO VÀ NHÃN
+---
+TOÁN TỬ FOR
+---
+TOÁN TỬ WHILE
+---
+BREAK VÀ CONTINUE
+break; cho phép ra khỏi vòng lặp.
+continue; dùng để bắt đầu một vòng mới của chu trình bên trong nhất chứa nó. Lưu ý: continue; không áp dụng cho switch.
+---
+
+CHƯƠNG 6. HÀM VÀ CẤU TRÚC CHƯƠNG TRÌNH
+Giá trị return sẽ được gán cho hàm.
+---
+CON TRỎ
+Địa chỉ của biến là số thứ tự của byte đầu tiên trong một dãy các byte liên tiếp mà máy dành cho biến(các byte được đánh số từ 0).
+Chú ý: Địa chỉ của biến là một số nguyên nhưng không được đánh đồng nó với các số nguyên thông thường dùng trong các phép tính.
+
+Phép toán &x cho ta địa chỉ của biến x.
+---
+VD:
+Khai báo con trỏ:
+int *p;
+double *c;
+Chú ý: Cần phân biệt giữa dấu * trong khai báo con trỏ(cú pháp do C/C++ quy định) và dấu * trong *p thông thường, *p ở đây tương đương với giá trị của biến x.
+
+int x, y;
+p = &x; --> đúng.
+c = &y; --> sai bởi vì b là biến kiểu int còn c là con trỏ kiểu double.
+
+Chú ý: Khi con trỏ p chứa địa chỉ của biến x thì ta nói p trỏ tới x.
+---
+Nếu con trỏ p chứa địa chỉ của a[i] thì sau khi thực hiện phép toán ++p no sẽ chứa địa chỉ của a[i+1]
+Chú ý: Nếu con trỏ p trỏ tới biến x thì cách viết x và *p là tương đương trong mọi ngữ cảnh.
+---
+CON TRỎ VÀ MẢNG MỘT CHIỀU
+Trong mọi ngữ cảnh:
+a tương đương với &a[0]					(remember)
+a + i tương đương với &a[i]				(remember)
+*(a + i) tương đương với a[i]			(remember)
+
+Nếu con trỏ pa trỏ tới một phần tử a[k] nào đó thì:
+pa + i trỏ tới phần tử thứ i sau a[k], tức là a[k+i]
+pa - i trỏ tới phần tử thứ i trước a[k], tức là a[k-i]
+
+VD:
+int a[30], *p;
+p = a;
+Khi đó bốn cách viết sau là tương đương:
+a[i]	*(a + i)	*(p + i)	p[i]	(remember)
+---
+CON TRỎ VÀ MẢNG NHIỀU CHIỀU
+&a[i][j] chỉ có thể sử dụng cho mảng hai chiều nguyên.
+Phép cộng địa chỉ trong mảng hai chiều:
+C quan niệm mảng hai chiều là mảng(một chiều) của mảng
+Như vậy với khai báo int a[2][3] thì a là mảng mà mỗi phần tử của nó(hai phần tử) là một dãy ba số nguyên(một hàng của bảng).
+a[0][0]		a[0][1]		a[0][2]	:	phần tử 1
+a[1][0]		a[1][1]		a[1][2	:	phần tử 2
+Vì vậy:
+a		trỏ tới đầu hàng thứ nhất, phần tử a[0][0].
+a + 1	trỏ tới đầu hàng thứ hai, phần tử a[1][0].
+...
+---
+Con trỏ và mảng hai chiều:
+VD duyệt mảng hai chiều bằng con trỏ:
+int *p, a[2][3];
+/* Chú ý lệnh này */
+p = (int*)a;	(ép kiểu)
+
+Khi đó:
+p		trỏ tới a[0][0]
+p + 1	trỏ tới a[0][1]
+p + 2	trỏ tới a[0][2]
+p + 3	trỏ tới a[1][0]
+p + 4	trỏ tới a[1][1]
+p + 5	trỏ tới a[1][2]
+
+
+Đọc document VD nhập mảng hai chiều sử dụng con trỏ.
+VD:
+int a[60][50];
+Có hai cách dùng tên mảng hai chiều a trong lời gọi hàm.
+Cách 1:
+Dùng con trỏ kiểu int[50] (mảng con trỏ?, xem phần sau), khai báo:
+int(*p)[50];
+Trong thân hàm, để truy cập đến phần tử a[i][j] ta dùng p[i][j].
+Chú ý: Theo cách này, hàm chỉ dùng được đối với các mảng hai chiều có 50 cột(số hàng không quan trọng).
+Myself: int a[60][50] = {	int[50],		|
+							int[50],		|	60 phần tử, mỗi phần tử là một mảng con trỏ.
+							...				|
+							int[50]	};		|
+Cách 2: Giống VD-duyệt-mảng-hai-chiều-bằng-con-trỏ phía trên.
+Dùng hai đối
+int *p;		/* biểu thị địa chỉ đầu của mảng a */
+int N;		/* biểu thị số cột của mảng a */
+Trong thân hàm, để truy cập đến phần tử a[i][j] ta dùng công thức:
+*(p + i*N + j) (remember: CÔNG THỨC TỔNG QUÁT)
+Chú ý: Theo cách này, mảng hai chiều được quy về mảng một chiều. Việc xử lý trong thân hàm sẽ phức tạp hơn so với cách thứ nhất,
+nhưng vì không cố định bao nhiêu cột nên có thể dùng hàm cho bất kỳ mảng hai chiều nào.
+
+Chứng minh công thức:
+Giả sử ta có mảng hai chiều và biến con trỏ như sau:
+int a[m][n];
+int *p;
+p = (int*)a;
+Khi đó: (remember)
+phần tử a[0][0]		được quản lý bởi p
+phần tử a[0][1]		được quản lý bởi p + 1
+..
+phần tử a[0][n-1]	được quản lý bởi p + n - 1	(từ a[0][0] đến a[m-1][n-1])
+phần tử a[1][0]		được quản lý bởi p + n
+phần tử a[1][1]		được quản lý bởi p + n + 1
+...
+phần tử a[1][n-1]	được quản lý bởi p + n + n - 1 = p + 2n - 1
+phần tử a[2][0]		được quản lý bởi p + 2n
+phần tử a[2][1]		được quản lý bởi p + 2n + 1
+...
+phần tử a[2][n-1]	được quản lý bởi p + 2n + n - 1 = p + 3n - 1
+...
+phần tử a[m-1][n-1]	được quản lý bởi p + mn - 1 = p + (m - 1)n + (n - 1)
+Như vậy, xem m - 1 là i
+			 n - 1 là j
+Ta được, phần tử a[i][j] được quản lý bởi p + i*n + j với n là số cột của mảng a. (remember: CÔNG THỨC TỔNG QUÁT)
+Ngoài ra còn phương pháp nhập mảng hai chiều thông qua biến trung gian. Tham khảo thêm ở document.
+---
+KIỂU CON TRỎ, KIỂU ĐỊA CHỈ, CÁC PHÉP TOÁN TRÊN CON TRỎ
+4 nhóm phép toán: phép gán, phép tăng giảm địa chỉ, phép truy cập bộ nhớ và so sánh.
+Đọc thêm ở document.
+Phép so sánh: Nếu p1 và p2 là hai con trỏ cùng kiểu int, ta nói:
+p1 < p2 nếu địa chỉ p1 trỏ tới		THẤP HƠN	địa chỉ p2 trỏ tới.
+p1 = p2 nếu địa chỉ p1 trỏ tới		BẰNG		địa chỉ p2 trỏ tới.
+p1 > p2 nếu địa chỉ p1 trỏ tới		CAO HƠN		địa chỉ p2 trỏ tới.
+
+CON TRỎ KIỂU VOID
